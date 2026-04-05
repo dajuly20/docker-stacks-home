@@ -5,3 +5,6 @@
 *.bak
 *.log
 .env
+rusdtdesk-server/data/
+immich/postgres/
+rusdtdesk-server/data/
