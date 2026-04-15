@@ -319,9 +319,9 @@ services:
         tag: "Nextcloud"
 
   # ============================================================
-  # Spalte 3 — HTZ.wiche.eu (Hetzner) + St. Georgen
+  # Spalte 3 — HTZ.wiche.eu (Hetzner)
   # ============================================================
-  - name: "HTZ.wiche.eu — Hetzner & St. Georgen"
+  - name: "HTZ.wiche.eu — Hetzner"
     icon: "fas fa-globe"
     items:
       - name: "OPNsense Hetzner (htz2.wiche.eu)"
@@ -329,6 +329,13 @@ services:
         subtitle: "Firewall / VPN Gateway Hetzner"
         tag: "Firewall"
         url: "https://htz2.wiche.eu"
+
+  # ============================================================
+  # Spalte 4 — *.stg.ip (St. Georgen)
+  # ============================================================
+  - name: "*.stg.ip — St. Georgen"
+    icon: "fas fa-home"
+    items:
       - name: "Pi-hole St. Georgen"
         logo: "assets/icons/pihole.webp"
         subtitle: "Ad Blocking STG"
