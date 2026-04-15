@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat /home/julian/Dokumente/GitProjects/home-docker-stacks/wgweiser/docker-compose.*)",
+      "Bash(curl -sL \"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Opnsense-logo.svg/600px-Opnsense-logo.svg.png\" -o opnsense.png)",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/coder/code-server/main/src/browser/media/favicon.svg\" -o code-server.svg)",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/henrygd/beszel/main/beszel/site/src/lib/assets/beszel.svg\" -o beszel.svg)",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/rcourtman/Pulse/refs/heads/main/client/public/pulse.svg\" -o pulse.svg)",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/duplicati/duplicati/master/Duplicati/GUI/Duplicati.GUI.TrayIcon/Assets/duplicati-logo.png\" -o duplicati.png)",
+      "Bash(curl -sL \"https://code.visualstudio.com/favicon.ico\" -o vscode.ico)",
+      "Bash(curl -sL \"https://raw.githubusercontent.com/microsoft/vscode/main/resources/linux/code.png\" -o vscode.png)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/selfhst/icons/png/wordpress.png\" -o wordpress.png)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/selfhst/icons/png/nextcloud.png\" -o nextcloud.png)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/selfhst/icons/png/netdata.png\" -o netdata.png)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/selfhst/icons/png/firefox.png\" -o firefox.png)",
+      "Bash(git commit -m ' *)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/selfhst/icons/png/home-assistant.png\" -o home-assistant.png)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/selfhst/icons/png/freepbx.png\" -o freepbx.png)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/selfhst/icons/png/openmediavault.png\" -o openmediavault.png)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/selfhst/icons/png/proxmox-backup-server.png\" -o proxmox-backup-server.png)",
+      "Bash(curl -sL \"https://cdn.jsdelivr.net/gh/selfhst/icons/png/volumio.png\" -o volumio.png)",
+      "Bash(code --open-url \"vscode://vscode.simpleBrowser/show?url=http%3A%2F%2F192.168.188.207%3A8000\")",
+      "WebFetch(domain:raw.githubusercontent.com)"
+    ],
+    "additionalDirectories": [
+      "/home/julian/Dokumente/GitProjects/home-docker-stacks/wgweiser/assets/icons"
+    ]
+  }
+}
