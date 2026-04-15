@@ -9,4 +9,5 @@ services:
     user: 1000:1000 # default
     environment:
       - INIT_ASSETS=1 # default, requires the config directory to be writable for the container user (see user option)
+      - WATCH=true # auto-reload dashboard when config.yml changes
     restart: unless-stopped
