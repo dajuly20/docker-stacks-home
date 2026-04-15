@@ -1,0 +1,261 @@
+mqtt:
+  base_topic: zigbee2mqtt
+  server: mqtt://mqtt.mrz.ip:1883
+serial:
+  adapter: ember
+  port: tcp://192.168.188.41:6638
+  baudrate: 115200
+homeassistant:
+  enabled: true
+advanced:
+  log_level: info
+  last_seen: ISO_8601_local
+device_options: {}
+frontend:
+  enabled: true
+  port: 8085
+devices:
+  '0x04cd15fffe9e6825':
+    friendly_name: StatuslightJulian
+  '0x7cb03eaa0a09fda4':
+    friendly_name: JulianDeckenventilator
+    homeassistant: {}
+    optimistic: true
+  '0x7cb03eaa0a0a523f':
+    friendly_name: OsramSteckdoseSubwoofer
+  '0x84fd27fffe72c801':
+    friendly_name: Lichterkette
+  '0x804b50fffeb94547':
+    friendly_name: StehlampeTV
+  '0x7cb03eaa0a0a1926':
+    friendly_name: OsramSteckdoseGruenZahnGreenTooth
+    homeassistant: {}
+    optimistic: true
+    retain: true
+  '0x000d6f00109c5cf5':
+    friendly_name: LichtschalterOsramJulianBett
+    homeassistant: {}
+    optimistic: true
+    retain: true
+  '0x000d6f00109ea9bb':
+    friendly_name: SchalterRolloDraussen
+    homeassistant: {}
+    optimistic: true
+    retain: true
+  '0xa4c138f4c3009e82':
+    friendly_name: Reed_Kontakt_Balkontuer_julian
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c138ac8f7379b7':
+    friendly_name: Reedkontakt_Balkontuer_Wohnnzimmer
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c13814ee3de9d0':
+    friendly_name: Reedkontakt_kleines_Bad
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0x000d6f00101d15cd':
+    friendly_name: OSRAM_5_ROLLO_TUER
+  '0x000d6f00101d4ff4':
+    friendly_name: OSRAM_6_ROLLO_BETT
+  '0xa4c13897ce29ae0e':
+    friendly_name: Temp/Hydro SolarPanel
+    retain: true
+  '0x943469fffea7a6f7':
+    friendly_name: LampeWohnzimmer
+    homeassistant: {}
+    optimistic: true
+  '0x04cd15fffe95f398':
+    friendly_name: EsstischTradfriBirne
+  '0x9035eafffec2ad81':
+    friendly_name: HalogenlampeKüche
+  '0xa4c13882c2f74a68':
+    friendly_name: TempHumidKleinesBad
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c138547c2865b5':
+    friendly_name: GrossesBad_TempHumid
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c1384a0fc8c1c6':
+    friendly_name: Balkon_TempHumid
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c138f81e623343':
+    friendly_name: Reeed_contact_FensterGrossesBad
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c1383b57fcb48f':
+    friendly_name: ' Rollo Bett ist UNTEN (reed)'
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c138b10c9ee524':
+    friendly_name: Rollo Bett ist OBEN (reed)
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c13824230ade9e':
+    friendly_name: ' Rollo Tür ist UNTEN NEU (reed)'
+    homeassistant: {}
+    optimistic: true
+    retain: true
+  '0xa4c138c84743549d':
+    friendly_name: JuliansSchimmelecke
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c138386c0d1547':
+    friendly_name: Julian TV Ecke
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c1382f9c31c162':
+    friendly_name: Julian Heizungs Ecke
+    homeassistant: {}
+    legacy: false
+    optimistic: true
+    retain: true
+  '0xa4c1381efc3dd9a1':
+    friendly_name: LED_Controller_Bett
+  '0x000d6f00101cf87a':
+    friendly_name: AussenSchalterRolloBett
+  '0x000d6f00101cd297':
+    friendly_name: RolloBettNEUERInnenSchalter
+  '0x000d6f00101cfaeb':
+    friendly_name: SchreibtischRolloTuerr
+  '0xf4b3b1fffe2a8a83':
+    friendly_name: AzorenFunzel
+  '0xd0cf5efffe171817':
+    friendly_name: AzorendrueggerRundIkea
+  '0x287681fffe0a570a':
+    friendly_name: >-
+      Rev.2 JUL IK Air LuftQualität (Revision(5) | Area(5) | VendorID(2) |
+      Function | InnrPos )
+    homeassistant: {}
+    optimistic: true
+    retain: true
+  '0xd0cf5efffe1573dc':
+    friendly_name: >-
+      Rev.2 WZ IK 5WayUfo Right RundschalterEsstisch (Revision(5) | Area(5) |
+      VendorID(2) | Function | InnrPos )
+  '0x90fd9ffffed79580':
+    friendly_name: rundschalterKüche
+  '0x000d6f00101cd7cd':
+    friendly_name: NeuerSchalterVentilatoREN
+    homeassistant: {}
+    optimistic: true
+    retain: true
+  '0x000d6f001019ef30':
+    friendly_name: GeneralschalterJulianNEW
+  '0x000d6f00101cf809':
+    friendly_name: GeneralschalterAusgang
+    homeassistant: {}
+    optimistic: true
+    retain: true
+  '0x000d6f001019eda1':
+    friendly_name: SchrebtischRolloBett
+    homeassistant: {}
+    optimistic: true
+    retain: true
+  '0xa4c1389fca3b5ace':
+    friendly_name: ' Rollo Tür ist OBEN (reed)'
+    homeassistant: {}
+    optimistic: true
+    retain: true
+  '0x18fc260000b75b82':
+    friendly_name: >-
+      Rev.2 JUL IN RGB Left  HalogenstrahlerSchreibtischLinks (Revision(5) |
+      Area(5) | VendorID(2) | Function | InnrPos )
+  '0x18fc260000b75da8':
+    friendly_name: >-
+      Rev.2 JUL IN RGB Right HalogenstrahlerSchreibtischRechts (Revision(5) |
+      Area(5) | VendorID(2) | Function | InnrPos )
+  '0x000d6f00109c8003':
+    friendly_name: generalschalterFlurRomy
+  '0x44e2f8fffe1bf0d5':
+    friendly_name: >-
+      Rev.2  JUL IK RGB Mid  HalogenstrahlerSchreibtischMitte (Revision(5) |
+      Area(5) | VendorID(2) | Function | InnrPos )
+  '0x2c1165fffecd6f65':
+    friendly_name: LidlToggle
+  '0xa4c1385dead92371':
+    friendly_name: Plant Julian Kaktus
+  '0xa4c138d7c21433ae':
+    friendly_name: USB_3X_Switch_Blauzahn_Grünzahn
+    state_action: false
+  '0x90fd9ffffe9e3d79':
+    friendly_name: RundschalterLichterkette
+  '0x000d6f00101cdde6':
+    friendly_name: RolloTuerSchalterInnen
+  '0x18fc260000bb7f87':
+    friendly_name: InnrRgbSpotNew_2
+  '0xf84477fffed971e4':
+    friendly_name: Bombay
+  '0x94ec32fffeff2200':
+    friendly_name: nachtlicht
+  '0xa4c138b44034b93d':
+    friendly_name: switchbot_samsung_laserdrucker
+  '0x142d41fffee4a5b1':
+    friendly_name: Grosser Ventilator
+  '0x001788010cc667f3':
+    friendly_name: hue-Ren-birne_untere_in_stehlampe_fenster
+  '0x001788010c3150fd':
+    friendly_name: hue-Ren-birne_obere_in_stehlampe_fenster
+  '0xa4c138de922485a6':
+    friendly_name: switchbot_brother_labelprinter
+  '0x50325ffffe29b3e8':
+    friendly_name: '0x50325ffffe29b3e8'
+blocklist:
+  - '0x001788010b90b044'
+  - '0x00178801062c025a'
+  - '0x001788010d32d8da'
+  - '0x0017880106a20381'
+groups:
+  '1':
+    friendly_name: JuliansLichter
+  '2':
+    friendly_name: LichtAllgemeinraum
+  '3':
+    friendly_name: kuechenLichter
+  '4':
+    friendly_name: juliansVentilatoren
+  '5':
+    friendly_name: Verstärker
+  '6':
+    friendly_name: TempUndHydroSensoren
+  '7':
+    friendly_name: JulianDeckenlicht
+  '8':
+    friendly_name: JulianDECKE
+  '9':
+    friendly_name: Stehlampen_Gruppe
+  '10':
+    friendly_name: Lichterkettengruppe
+  '11':
+    friendly_name: Julian_MerlinLample
+  '42':
+    friendly_name: Stehlampe_Fenster
+  '555':
+    friendly_name: schreibtisch_rgb_spots
+availability:
+  enabled: true
+version: 4
