@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "wgweiser: open in Simple Browser",
+      "type": "shell",
+      "command": "code --open-url 'vscode://vscode.simpleBrowser/show?url=http%3A%2F%2F192.168.188.207%3A8000'",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "wgweiser: docker compose up",
+      "type": "shell",
+      "command": "echo '🧭 W(e)gweiser starten...' && echo \"   Lokale IP : $(hostname -I | awk '{print $1}')\" && echo '   URL       : http://localhost:8000' && (sleep 3 && xdg-open http://localhost:8000 &) && docker compose -f ${workspaceFolder}/wgweiser/docker-compose.yaml up --build",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "wgweiser: docker compose down",
+      "type": "shell",
+      "command": "docker compose -f ${workspaceFolder}/wgweiser/docker-compose.yaml down",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

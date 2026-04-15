@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "wgweiser: docker compose up",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "echo '=== W(e)gweiser ===' && echo \"Lokale IP : $(hostname -I | awk '{print $1}')\" && echo 'URL       : http://localhost:8000' && (sleep 3 && xdg-open http://localhost:8000 &) && docker compose -f ${workspaceFolder}/wgweiser/docker-compose.yaml up --build"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}
