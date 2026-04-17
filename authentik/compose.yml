@@ -32,14 +32,18 @@ services:
       AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
       AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2026.2.2}
-    ports:
-    - ${COMPOSE_PORT_HTTP:-9000}:9000
-    - ${COMPOSE_PORT_HTTPS:-9443}:9443
     restart: unless-stopped
     shm_size: 512mb
     volumes:
     - ./data:/data
     - ./custom-templates:/templates
+    networks:
+    - traefik_web
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.authentik.rule=Host(`auth.wiche.eu`)"
+    - "traefik.http.routers.authentik.entrypoints=https"
+    - "traefik.http.services.authentik.loadbalancer.server.port=9000"
   worker:
     command: worker
     depends_on:
@@ -65,3 +69,7 @@ services:
 volumes:
   database:
     driver: local
+
+networks:
+  traefik_web:
+    external: true
