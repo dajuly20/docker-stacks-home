@@ -35,6 +35,12 @@ colors:
     card-shadow: rgba(0, 0, 0, 0.4)
     link-hover: "#ffdd57"
 
+message:
+  style: "is-warning"
+  title: "🎉 Einweihungsparty!"
+  icon: "fas fa-beer"
+  content: "Moin Florian, wir machen heut Einweihungsparty. Komm gerne mal auf ein Bier vorbei / wenn zu laut – sag Bescheid. Aber is ja zur anderen Seite und 1 Stock drüber.. (161) 😉 Gruß Julian"
+
 links:
   - name: "Server Wiki"
     icon: "fas fa-book"
@@ -424,8 +430,8 @@ services:
 
       - name: "Proxmox Hetzner"
         logo: "assets/icons/proxmox.png"
-        subtitle: "pve.wiche.eu | 188.201"
-        tag: "192.168.188.201"
+        subtitle: "pve.htz.ip | 188.201"
+        tag: "pve.htz.ip"
         tagstyle: "is-link"
         url: "https://pve.wiche.eu:8006/"
 
