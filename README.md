@@ -1,4 +1,4 @@
-# 🐳 Home Docker Stacks
+# 🐳 Docker Stacks Home
 
 Dieses Repository enthält die produktiven und experimentellen **Docker-Stacks** meiner Home-Infrastruktur.  
 Alle Deployments erfolgen über **Portainer** (zentrale Verwaltung via [`portainer.julianw.ip`](https://portainer.julianw.ip)).
@@ -23,7 +23,7 @@ Alle Deployments erfolgen über **Portainer** (zentrale Verwaltung via [`portain
 Alle Stacks werden über **Portainer CE** bereitgestellt.  
 Unter *Stacks → Add Stack → Repository* kann das Git-Repo direkt eingebunden werden.
 
-![Portainer Stack Setup Screenshot](portiner-stack-conf.png)
+![Portainer Stack Setup Screenshot](.img/portiner-stack-conf.png)
 
 ### Beispielkonfiguration
 | Feld | Wert |
@@ -47,7 +47,7 @@ git clone https://github.com/dajuly20/home-docker-stacks.git
 cd home-docker-stacks/unify-networking
 docker compose up -d
 
-# 🐳 Home Docker Stacks
+# 🐳 Docker Stacks Home
 
 Dieses Repository enthält die produktiven und experimentellen **Docker-Stacks** meiner Home-Infrastruktur.  
 Alle Deployments erfolgen über **Portainer** (zentrale Verwaltung via [`cortana.julianw.ip`](https://cortana.julianw.ip)).
