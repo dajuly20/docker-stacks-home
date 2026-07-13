@@ -1,29 +1,26 @@
 services:
   traefik:
-    image: traefik:v2.9
+    image: traefik:v3.7.7
     restart: always
+    environment:
+      - DOCKER_API_VERSION=1.55
     command:
-      # Experimentell, um das Dashboard ohne Zugriffsschutz aufzurufen
-      #- "--api.insecure=true"
       - "--providers.docker"
       - "--providers.docker.exposedByDefault=false"
       - "--providers.docker.network=traefik_web"
+      - "--providers.file.directory=/etc/traefik/dynamic"
+      - "--providers.file.watch=true"
       - "--entrypoints.http.address=:80"
       - "--entrypoints.http.http.redirections.entrypoint.to=https"
       - "--entrypoints.http.http.redirections.entrypoint.scheme=https"
       - "--entrypoints.https.address=:443"
-      # Vermeidet, dass wir den resolver in jedem container mit "traefik.http.routers.https.tls.certresolver=le" angeben muessen
-      - "--entrypoints.https.http.tls.certResolver=le"
-      - "--certificatesresolvers.le.acme.tlschallenge=true"
-      - "--certificatesresolvers.le.acme.email=julian@wiche.eu"
-      - "--certificatesresolvers.le.acme.storage=/letsencrypt/acme.json"
     ports:
       - "80:80"
       - "443:443"
-      - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /etc/letsencrypt:/letsencrypt
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - /home/julian/docker-stacks-home/traefik-revproxy/dynamic:/etc/traefik/dynamic:ro
     networks:
       - web
 
