@@ -32,7 +32,6 @@ services:
       retries: 5
     volumes:
     - redis:/data
-    - /etc/letsencrypt:/certs
     networks:
     - internal
 
@@ -55,11 +54,15 @@ services:
     image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2026.2.2}
     restart: unless-stopped
     shm_size: 512mb
+    ports:
+    - "${COMPOSE_PORT_HTTP:-9080}:9000"
+    - "${COMPOSE_PORT_HTTPS:-9443}:9443"
     volumes:
     - ./data:/data
     - ./media:/media
     - ./custom-templates:/templates
     - ./certs:/certs
+    - /etc/letsencrypt:/letsencrypt:ro
     networks:
     - internal
     - traefik_web
