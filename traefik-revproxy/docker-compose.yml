@@ -1,11 +1,12 @@
 services:
   traefik:
     image: traefik:v3.7.7
-    restart: always
-    environment:
-      - DOCKER_API_VERSION=1.55
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     command:
-      - "--providers.docker"
+      - "--providers.docker=true"
       - "--providers.docker.exposedByDefault=false"
       - "--providers.docker.network=traefik_web"
       - "--providers.file.directory=/etc/traefik/dynamic"
@@ -14,6 +15,7 @@ services:
       - "--entrypoints.http.http.redirections.entrypoint.to=https"
       - "--entrypoints.http.http.redirections.entrypoint.scheme=https"
       - "--entrypoints.https.address=:443"
+      - "--api.dashboard=true"
     ports:
       - "80:80"
       - "443:443"
