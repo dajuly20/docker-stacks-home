@@ -1,0 +1,83 @@
+services:
+  postgresql:
+    image: docker.io/library/postgres:16-alpine
+    restart: unless-stopped
+    env_file:
+    - .env
+    environment:
+      POSTGRES_DB: ${PG_DB:-authentik}
+      POSTGRES_USER: ${PG_USER:-authentik}
+      POSTGRES_PASSWORD: ${PG_PASS:?database password required}
+    volumes:
+    - database:/var/lib/postgresql/data
+    healthcheck:
+      test:
+      - CMD-SHELL
+      - pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  server:
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2026.5.6}
+    restart: unless-stopped
+    command: server
+    env_file:
+    - .env
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
+      AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    shm_size: 512mb
+    volumes:
+    - ./data:/data
+    - ./custom-templates:/templates
+    networks:
+    - default
+    - web
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: traefik_web
+      traefik.http.routers.authentik.rule: Host(`auth.wiche.eu`)
+      traefik.http.routers.authentik.entrypoints: https
+      traefik.http.routers.authentik.tls: "true"
+      traefik.http.services.authentik.loadbalancer.server.port: "9000"
+
+  worker:
+    image: ${AUTHENTIK_IMAGE:-ghcr.io/goauthentik/server}:${AUTHENTIK_TAG:-2026.5.6}
+    restart: unless-stopped
+    command: worker
+    user: root
+    env_file:
+    - .env
+    environment:
+      AUTHENTIK_POSTGRESQL__HOST: postgresql
+      AUTHENTIK_POSTGRESQL__NAME: ${PG_DB:-authentik}
+      AUTHENTIK_POSTGRESQL__USER: ${PG_USER:-authentik}
+      AUTHENTIK_POSTGRESQL__PASSWORD: ${PG_PASS}
+      AUTHENTIK_SECRET_KEY: ${AUTHENTIK_SECRET_KEY:?secret key required}
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    shm_size: 512mb
+    volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - ./data:/data
+    - ./certs:/certs
+    - ./custom-templates:/templates
+
+networks:
+  default: {}
+  web:
+    name: traefik_web
+    external: true
+
+volumes:
+  database:
+    driver: local
