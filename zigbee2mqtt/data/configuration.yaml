@@ -8,7 +8,7 @@ serial:
 homeassistant:
   enabled: true
 advanced:
-  log_level: info
+  log_level: error
   last_seen: ISO_8601_local
 device_options: {}
 frontend:
@@ -16,7 +16,7 @@ frontend:
   port: 8085
 devices:
   '0x04cd15fffe9e6825':
-    friendly_name: StatuslightJulian
+    friendly_name: romy_rgb_decke
   '0x7cb03eaa0a09fda4':
     friendly_name: JulianDeckenventilator
     homeassistant: {}
@@ -28,7 +28,7 @@ devices:
   '0x804b50fffeb94547':
     friendly_name: StehlampeTV
   '0x7cb03eaa0a0a1926':
-    friendly_name: OsramSteckdoseGruenZahnGreenTooth
+    friendly_name: LED_kueche_unterbau
     homeassistant: {}
     optimistic: true
     retain: true
@@ -63,9 +63,9 @@ devices:
   '0x000d6f00101d15cd':
     friendly_name: OSRAM_5_ROLLO_TUER
   '0x000d6f00101d4ff4':
-    friendly_name: OSRAM_6_ROLLO_BETT
+    friendly_name: GeneralschalterBad
   '0xa4c13897ce29ae0e':
-    friendly_name: Temp/Hydro SolarPanel
+    friendly_name: Temp/Hydro kleiner Balkon
     retain: true
   '0x943469fffea7a6f7':
     friendly_name: LampeWohnzimmer
@@ -139,9 +139,9 @@ devices:
   '0x000d6f00101cf87a':
     friendly_name: AussenSchalterRolloBett
   '0x000d6f00101cd297':
-    friendly_name: RolloBettNEUERInnenSchalter
+    friendly_name: GeneralschalterLars
   '0x000d6f00101cfaeb':
-    friendly_name: SchreibtischRolloTuerr
+    friendly_name: GeneralschalterRomyNeu
   '0xf4b3b1fffe2a8a83':
     friendly_name: AzorenFunzel
   '0xd0cf5efffe171817':
@@ -154,9 +154,7 @@ devices:
     optimistic: true
     retain: true
   '0xd0cf5efffe1573dc':
-    friendly_name: >-
-      Rev.2 WZ IK 5WayUfo Right RundschalterEsstisch (Revision(5) | Area(5) |
-      VendorID(2) | Function | InnrPos )
+    friendly_name: RundschalterEsstisch
   '0x90fd9ffffed79580':
     friendly_name: rundschalterKüche
   '0x000d6f00101cd7cd':
@@ -177,7 +175,7 @@ devices:
     optimistic: true
     retain: true
   '0xa4c1389fca3b5ace':
-    friendly_name: reed lars fenster
+    friendly_name: reed_lars_balkontuer
     homeassistant: {}
     optimistic: true
     retain: true
@@ -190,12 +188,10 @@ devices:
   '0x2c1165fffecd6f65':
     friendly_name: LidlToggle
   '0xa4c1385dead92371':
-    friendly_name: Plant Julian Kaktus
+    friendly_name: plant_wohnzimmer
   '0xa4c138d7c21433ae':
     friendly_name: USB_3X_Switch_Blauzahn_Grünzahn
     state_action: false
-  '0x90fd9ffffe9e3d79':
-    friendly_name: RundschalterLichterkette
   '0x18fc260000bb7f87':
     friendly_name: deckenstrahler rgb mitte
   '0xf84477fffed971e4':
@@ -203,7 +199,7 @@ devices:
   '0x94ec32fffeff2200':
     friendly_name: nachtlicht
   '0xa4c138b44034b93d':
-    friendly_name: switchbot_samsung_laserdrucker
+    friendly_name: switchbot_radio_grosses_bad
   '0x142d41fffee4a5b1':
     friendly_name: Grosser Ventilator
   '0x001788010cc667f3':
@@ -213,9 +209,64 @@ devices:
   '0x50325ffffe29b3e8':
     friendly_name: Küchen Gruppenschalter
   '0xe456acfffe3e9fb4':
-    friendly_name: Bad Gross
+    friendly_name: Bad Gross Heizung
   '0xe456acfffe52ee7b':
     friendly_name: climate romina
+  '0xa4c13803d523ffff':
+    friendly_name: romina_zimmertuer
+  '0xa4c13803c8f2ffff':
+    friendly_name: reed_wohnungstuere
+  '0xa4c13803c88affff':
+    friendly_name: reed_minibalkon
+  '0xa4c13803d5b6ffff':
+    friendly_name: reed_bad_gross_zimmertuer
+  '0xa4c13803c84fffff':
+    friendly_name: reed_lars_zimmertuer
+  '0xa4c13803e0abffff':
+    friendly_name: reed_lars_fenster
+  '0xa4c13803e1afffff':
+    friendly_name: reed_kuehli_links_oben
+  '0xa4c13803bbcdffff':
+    friendly_name: reed_kuehli_links_unten
+  '0xa4c13803e20fffff':
+    friendly_name: reed_kuehli_rechts_unten
+  '0xa4c13803bb99ffff':
+    friendly_name: reed_kuehli_rechts_oben
+  '0xa4c13808276cffff':
+    friendly_name: steckd_solartanke_neu
+  '0xa4c13803c8deffff':
+    friendly_name: reed_kammer_zimmetuer
+  '0xa4c13803bc5cffff':
+    friendly_name: reed_keuche_fenster
+  '0xa4c138de922485a6':
+    friendly_name: '0xa4c138de922485a6'
+  '0xa4c1389759e02497':
+    friendly_name: julian_stimmungslicht_usb_switcher
+  '0x90fd9ffffe9e3d79':
+    friendly_name: RomyLight
+  '0xec1bbdfffeac2d2c':
+    friendly_name: pir_melder
+  '0xc02cedfffeca5c58':
+    friendly_name: sensor_romy_serientaster
+  '0x001788010ff2ee59':
+    friendly_name: lars_rgb_links
+  '0x00178801100308ec':
+    friendly_name: lars_rgb_rechts
+  '0x00178801100308b7':
+    friendly_name: romy_rgb_oben
+  '0xb0e8e8fffeed2841':
+    friendly_name: ir_gateway_julian
+  '0x001788011002e2f7':
+    friendly_name: romy_rgb_unten
+  '0x48f6eefffed68c19':
+    friendly_name: romy_serientaster
+  '0xbc33acfffe21a7e2':
+    friendly_name: '0xbc33acfffe21a7e2'
+  '0xa4c138a5dd6533f9':
+    friendly_name: presence_eingang
+  '0xbc33acfffe6fab3e':
+    friendly_name: 6timesswitch
+    description: sechsfach schalter eltern
 blocklist:
   - '0x001788010b90b044'
   - '0x00178801062c025a'
@@ -238,19 +289,27 @@ groups:
   '6':
     friendly_name: TempUndHydroSensoren
   '7':
-    friendly_name: julian_deckenstrahler_rgb
+    friendly_name: juliandecke
   '8':
     friendly_name: JulianDECKE
   '9':
     friendly_name: Stehlampen_Gruppe
-  '10':
-    friendly_name: Lichterkettengruppe
   '11':
     friendly_name: Julian_MerlinLample
   '42':
     friendly_name: Stehlampe_Fenster
+  '111':
+    friendly_name: Generalschalter
+  '500':
+    friendly_name: lars_deckenlicht_gruppe
   '555':
     friendly_name: schreibtisch_rgb_spots
+  '601':
+    friendly_name: romy_stehleuchte
+  '602':
+    friendly_name: romy_decke
+  '777':
+    friendly_name: solar_ueberschuss_gruppe
   '800':
     friendly_name: reedDoorsensor
 availability:
