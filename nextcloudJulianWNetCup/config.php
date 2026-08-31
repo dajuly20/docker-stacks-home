@@ -1,0 +1,61 @@
+<?php
+$CONFIG = array (
+  'instanceid' => 'ocotnaxxug8e',
+  'passwordsalt' => '9RMJWYfTZ+t8q701Kdec1iH5NuPJoq',
+  'secret' => 'l0FFvlocjBnBAucAZRH68DvTDbek2ExyNwkCR+0v6CYoioiA',
+  'trusted_domains' => 
+  array (
+    0 => 'nextcloud.julianw.de',
+    1 => 'webdav.julianw.de',
+    2 => 'dav.julianw.de',
+    3 => '192.168.1.100',
+    4 => 'localhost',
+    5 => 'julsrv.ip',
+  ),
+  'trusted_proxies' => 
+  array (
+    0 => '127.0.0.1',
+    1 => '::1',
+  ),
+  'overwrite.cli.url' => 'https://nextcloud.julianw.de',
+  'overwriteprotocol' => 'https',
+  'datadirectory' => '/media/storage/nextcloud_data',
+  'dbtype' => 'mysql',
+  'version' => '32.0.3.2',
+  'dbname' => 'nextcloud',
+  'dbhost' => 'nextcloud-db',
+  'dbpassword' => 'nextcloud',
+  'dbtableprefix' => 'oc_',
+  'mysql.utf8mb4' => true,
+  'dbuser' => 'nextcloud',
+  'installed' => true,
+  'filelocking.enabled' => true,
+  'memcache.local' => '\\OC\\Memcache\\APCu',
+  'memcache.locking' => '\\OC\\Memcache\\Redis',
+  'redis' => 
+  array (
+    'host' => 'redis',
+    'port' => 6379,
+  ),
+  'mail_smtpmode' => 'smtp',
+  'mail_sendmailmode' => 'smtp',
+  'mail_from_address' => 'dajuly2222',
+  'mail_domain' => 'gmail.com',
+  'mail_smtphost' => 'smtp.gmail.com',
+  'mail_smtpport' => '587',
+  'mail_smtpauth' => 1,
+  'mail_smtpname' => 'dajuly2222',
+  'mail_smtppassword' => 'pmst iley eusv ebgs',
+  'maintenance' => false,
+  'theme' => '',
+  'loglevel' => 2,
+  'maintenance_window_start' => '3',
+  'default_phone_region' => 'DE',
+  'updater.secret' => '$2y$10$MaoQR.1yqGRpTiPFMP7PTe5Ek2GshDgjl12lIo3bmZ2Q3SWRS10km',
+  'appstoreenabled' => true,
+  'appstoreurl' => 'https://apps.nextcloud.com/api/v1',
+  'app_install_overwrite' => 
+  array (
+    0 => 'backup',
+  ),
+);

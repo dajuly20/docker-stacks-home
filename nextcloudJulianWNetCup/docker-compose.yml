@@ -42,7 +42,7 @@ services:
     volumes:
 
       - /etc/nextcloud:/var/www/html/config:ro
-      - /media/storage/nextcloud_data:/media/storage/nextcloud_data
+      - /media-10tb/storage/nextcloud_data:/media/storage/nextcloud_data
       # Optional, falls du eigene Apps hast:
       #- nextcloud-app-data:/var/www/html/custom_apps
 
