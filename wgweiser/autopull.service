@@ -1,0 +1,9 @@
+[Unit]
+Description=Homer autopull - pull latest config from git
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=__REPO_DIR__
+ExecStart=__REPO_DIR__/autopull.sh

@@ -1,0 +1,15 @@
+http:
+  middlewares:
+    dashboard-auth:
+      basicAuth:
+        users:
+          - "julian:$2y$12$G9o0JwRO3op0.eUOmmhZ7Ojhw4shUsY8bcOFAY4TJOwGr4IYUgnSK"
+  routers:
+    traefik-dashboard:
+      rule: "Host(`traefik.wiche.eu`) || Host(`traefik.htz.ip`)"
+      service: api@internal
+      entrypoints:
+        - https
+      tls: {}
+      middlewares:
+        - dashboard-auth

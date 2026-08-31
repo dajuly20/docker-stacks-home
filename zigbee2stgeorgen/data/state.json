@@ -1,0 +1,58 @@
+{
+    "10": {
+        "state": "ON",
+        "brightness": 6,
+        "color_temp": 370,
+        "color_mode": "color_temp"
+    },
+    "0x5c0272fffe6f2a03": {
+        "state": "ON",
+        "update": {
+            "state": "idle",
+            "installed_version": 587757105,
+            "latest_version": 587757105,
+            "latest_source": "https://raw.githubusercontent.com/Koenkk/zigbee-OTA/master/images/IKEA/tradfri-sy5882-unified_release_prod_v587757105_d478807c-f16e-4989-a948-82818fb545b9.ota",
+            "latest_release_notes": "https://ww8.ikea.com/ikeahomesmart/releasenotes/releasenotes.html"
+        },
+        "brightness": 14,
+        "linkquality": 104
+    },
+    "0x804b50fffed2a7f2": {
+        "state": "ON",
+        "update": {
+            "state": "idle",
+            "installed_version": 587757105,
+            "latest_version": 587757105,
+            "latest_source": "https://raw.githubusercontent.com/Koenkk/zigbee-OTA/master/images/IKEA/tradfri-sy5882-unified_release_prod_v587757105_d478807c-f16e-4989-a948-82818fb545b9.ota",
+            "latest_release_notes": "https://ww8.ikea.com/ikeahomesmart/releasenotes/releasenotes.html"
+        },
+        "brightness": 6,
+        "color_temp": 370,
+        "color_mode": "color_temp",
+        "linkquality": 100
+    },
+    "0x842e14fffe4c9b63": {
+        "battery": 100,
+        "update": {
+            "state": "available",
+            "installed_version": 65572,
+            "latest_version": 33816598,
+            "latest_source": "https://raw.githubusercontent.com/Koenkk/zigbee-OTA/master/images/IKEA/zingo-kt-styrbar-remote_release_prod_v33816598_c00d5422-e816-48ec-87a6-40198661d2d5.ota",
+            "latest_release_notes": "https://ww8.ikea.com/ikeahomesmart/releasenotes/releasenotes.html"
+        },
+        "linkquality": 104
+    },
+    "0xbc33acfffe6fab3e": {
+        "linkquality": 92,
+        "battery": 50
+    },
+    "0x84fd27fffe2c5701": {
+        "state": "ON",
+        "brightness": 83
+    },
+    "0x847127fffe784771": {
+        "state": "OFF",
+        "external_switch_type": "push_button",
+        "external_switch_type_numeric": 0
+    }
+}

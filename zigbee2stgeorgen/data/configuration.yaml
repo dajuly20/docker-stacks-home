@@ -1,0 +1,60 @@
+version: 5
+mqtt:
+  base_topic: zigbee2stgeorgen
+  server: mqtt://mqtt.mrz.ip:1883
+serial:
+  adapter: ember
+  baudrate: 115200
+  port: tcp://192.168.178.60:6638
+advanced:
+  log_level: info
+  channel: 11
+  network_key:
+    - 191
+    - 0
+    - 118
+    - 145
+    - 128
+    - 9
+    - 117
+    - 120
+    - 164
+    - 153
+    - 241
+    - 175
+    - 60
+    - 223
+    - 16
+    - 25
+  pan_id: 35343
+  ext_pan_id:
+    - 30
+    - 108
+    - 136
+    - 142
+    - 198
+    - 220
+    - 187
+    - 67
+  enable_external_js: false
+frontend:
+  enabled: true
+  port: 8080
+homeassistant:
+  enabled: true
+devices:
+  '0x5c0272fffe6f2a03':
+    friendly_name: wohnzimmertischLinks
+  '0x804b50fffed2a7f2':
+    friendly_name: wohnzimmertischRechts
+  '0x842e14fffe4c9b63':
+    friendly_name: schalterWohnzimmer
+  '0xbc33acfffe6fab3e':
+    friendly_name: vierfachschalterDachboden
+  '0x84fd27fffe2c5701':
+    friendly_name: stehlampeDachboden
+  '0x847127fffe784771':
+    friendly_name: dachbodenDeckenlicht
+groups:
+  '10':
+    friendly_name: esstisch

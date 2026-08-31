@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Homer autopull every 5 minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+Unit=autopull.service
+Persistent=true
+
+[Install]
+WantedBy=timers.target
