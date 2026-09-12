@@ -2,6 +2,8 @@ tls:
   certificates:
     - certFile: /etc/letsencrypt/live/wiche.eu/fullchain.pem
       keyFile: /etc/letsencrypt/live/wiche.eu/privkey.pem
+    - certFile: /etc/letsencrypt/live/julianw.de/fullchain.pem
+      keyFile: /etc/letsencrypt/live/julianw.de/privkey.pem
   stores:
     default:
       defaultCertificate:
