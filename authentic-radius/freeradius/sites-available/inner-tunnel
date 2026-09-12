@@ -1,0 +1,58 @@
+server inner-tunnel {
+    listen {
+        ipaddr = 127.0.0.1
+        port = 18120
+        type = auth
+    }
+
+    authorize {
+        filter_username
+
+        eap {
+            # GTC-Challenge wird direkt zurückgegeben → kein Proxy
+            handled = return
+            # Wenn EAP das Passwort extrahiert hat (ok oder updated): fall-through
+        }
+
+        # Nur proxyen wenn User-Password tatsächlich vorhanden (GTC hat Passwort extrahiert)
+        if (&User-Password) {
+            update control {
+                &Proxy-To-Realm := "authentik_realm"
+            }
+        }
+    }
+
+    authenticate {
+        Auth-Type PAP {
+            pap
+        }
+        eap
+    }
+
+    pre-proxy {
+        # EAP-Attribute entfernen, damit authentik-radius einen sauberen PAP-Request bekommt
+        update request {
+            EAP-Message !* ANY
+            Message-Authenticator !* ANY
+            State !* ANY
+        }
+        attr_filter.pre-proxy
+    }
+
+    post-proxy {
+        eap
+    }
+
+    post-auth {
+        update outer.session-state {
+            &User-Name := &request:User-Name
+        }
+
+        Post-Auth-Type REJECT {
+            update outer.session-state {
+                &Module-Failure-Message := &request:Module-Failure-Message
+            }
+            attr_filter.access_reject
+        }
+    }
+}

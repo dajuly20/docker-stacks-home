@@ -1,0 +1,47 @@
+networks:
+  radius_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
+
+services:
+  freeradius:
+    image: freeradius/freeradius-server:latest
+    container_name: freeradius
+    restart: unless-stopped
+    ports:
+      - "1812:1812/udp"
+    volumes:
+      - ./freeradius/clients.conf:/etc/freeradius/clients.conf:ro
+      - ./freeradius/proxy.conf:/etc/freeradius/proxy.conf:ro
+      - ./freeradius/mods-available/eap:/etc/freeradius/mods-available/eap:ro
+      - ./freeradius/sites-available/inner-tunnel:/etc/freeradius/sites-available/inner-tunnel:ro
+      - ./freeradius/sites-available/default:/etc/freeradius/sites-available/default:ro
+      - ./freeradius/certs:/etc/freeradius/certs
+    networks:
+      - radius_net
+    depends_on:
+      - authentik-radius
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  authentik-radius:
+    image: ghcr.io/goauthentik/radius:2026.5.6
+    container_name: authentik-radius
+    restart: unless-stopped
+    networks:
+      radius_net:
+        ipv4_address: 172.28.0.10
+    environment:
+      AUTHENTIK_HOST: "https://auth.wiche.eu"
+      AUTHENTIK_TOKEN: "aimcsfccJIhBqlrzl9k0zQPHOq5i7FUu89jXihIZIBrKoPfBwHguqgQ0sHsz"
+      AUTHENTIK_HOST_BROWSER: "https://auth.wiche.eu"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
