@@ -1,0 +1,94 @@
+# n8n Assistant self-hosted sandbox stack ("n8n Sandbox").
+# Source of truth for images/env vars: https://github.com/n8n-io/n8n/blob/master/docker/get-n8n-compose.yml
+#
+# Security notes (per n8n's own docs):
+# - sandbox-runner-1 is `privileged: true` (Docker-in-Docker) — treat it as
+#   root-equivalent on this host. It is intentionally NOT on traefik_web and
+#   has no published ports.
+# - Secrets live in ./.env (chmod 600) and are passed explicitly per-service
+#   below, not via env_file — so n8n's own secrets (N8N host config, future
+#   model API keys) never reach the sandbox containers, and vice versa.
+# - n8n currently classifies this bundled sandbox as suited for local
+#   dev/testing; for production it recommends Daytona instead.
+
+volumes:
+  sandbox-tls:
+
+services:
+  sandbox-certs:
+    image: ghcr.io/n8n-io/n8n-sandbox-service-api:1.2.0
+    user: '0:0'
+    entrypoint: ['sh', '-c']
+    command:
+      - >
+        bootstrap-mtls.sh --out-dir /tls --api-san sandbox-api
+        --control-san-prefix sandbox-runner --world-readable &&
+        chown -R sandbox-api:sandbox-api /tls/api && chmod -R a+rX /tls
+    environment:
+      NUM_RUNNERS: '1'
+    volumes:
+      - sandbox-tls:/tls
+
+  sandbox-api:
+    image: ghcr.io/n8n-io/n8n-sandbox-service-api:1.2.0
+    depends_on:
+      sandbox-certs:
+        condition: service_completed_successfully
+    environment:
+      SANDBOX_API_KEYS: ${SANDBOX_API_KEYS}
+      SANDBOX_API_RUNNER_REGISTRATION_TOKEN: ${SANDBOX_API_RUNNER_REGISTRATION_TOKEN}
+      SANDBOX_API_RUNNER_API_KEY: ${SANDBOX_API_RUNNER_API_KEY}
+      SANDBOX_API_GRPC_TLS_CERT_FILE: /tls/api/grpc-server.crt
+      SANDBOX_API_GRPC_TLS_KEY_FILE: /tls/api/grpc-server.key
+      SANDBOX_API_GRPC_TLS_CLIENT_CA_FILE: /tls/api/ca.crt
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CA_FILE: /tls/api/ca.crt
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/api/control-grpc-api-client.crt
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/api/control-grpc-api-client.key
+      SANDBOX_API_RUNNER_CONTROL_GRPC_TLS_SERVER_NAME: sandbox-runner-1
+    volumes:
+      - sandbox-tls:/tls:ro
+    healthcheck:
+      test: ['CMD', 'wget', '-qO-', 'http://localhost:8080/healthz']
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    # Never publish 8080/9090 to the host. n8n reaches this by service name
+    # over the n8n-public project's default (internal) network.
+
+  sandbox-runner-1:
+    image: ghcr.io/n8n-io/n8n-sandbox-service-runner-dind:1.2.0
+    privileged: true
+    depends_on:
+      sandbox-api:
+        condition: service_healthy
+    environment:
+      SANDBOX_RUNNER_REGISTRATION_TOKEN: ${SANDBOX_RUNNER_REGISTRATION_TOKEN}
+      SANDBOX_RUNNER_API_KEYS: ${SANDBOX_RUNNER_API_KEYS}
+      SANDBOX_RUNNER_API_GRPC_ADDR: sandbox-api:9090
+      SANDBOX_RUNNER_HTTP_BASE_URL: http://sandbox-runner-1:8080
+      SANDBOX_RUNNER_CONTROL_GRPC_LISTEN_ADDR: ':9091'
+      SANDBOX_RUNNER_CONTROL_GRPC_ADVERTISE_ADDR: sandbox-runner-1:9091
+      SANDBOX_RUNNER_ID: runner-1
+      SANDBOX_RUNNER_DOCKER_SANDBOX_IMAGE: ghcr.io/n8n-io/n8n-sandbox-service-sandbox:latest
+      SANDBOX_RUNNER_REGISTRATION_GRPC_CA_FILE: /tls/runner/ca.crt
+      SANDBOX_RUNNER_REGISTRATION_GRPC_CERT_FILE: /tls/runner/grpc-client.crt
+      SANDBOX_RUNNER_REGISTRATION_GRPC_KEY_FILE: /tls/runner/grpc-client.key
+      SANDBOX_RUNNER_REGISTRATION_GRPC_SERVER_NAME: sandbox-api
+      SANDBOX_RUNNER_CONTROL_GRPC_TLS_CERT_FILE: /tls/runner/control-grpc-server.crt
+      SANDBOX_RUNNER_CONTROL_GRPC_TLS_KEY_FILE: /tls/runner/control-grpc-server.key
+      SANDBOX_RUNNER_CONTROL_GRPC_TLS_CLIENT_CA_FILE: /tls/runner/ca.crt
+    volumes:
+      - sandbox-tls:/tls:ro
+    # Never expose this container's ports. Privileged + Docker-in-Docker.
+
+  n8n:
+    depends_on:
+      sandbox-api:
+        condition: service_healthy
+    environment:
+      - N8N_INSTANCE_AI_SANDBOX_ENABLED=true
+      - N8N_INSTANCE_AI_SANDBOX_PROVIDER=n8n-sandbox
+      - N8N_INSTANCE_AI_SANDBOX_IMAGE=ghcr.io/n8n-io/n8n-sandbox-service-sandbox:latest
+      - N8N_SANDBOX_SERVICE_URL=http://sandbox-api:8080
+      - N8N_SANDBOX_SERVICE_API_KEY=${N8N_SANDBOX_SERVICE_API_KEY}

@@ -1,0 +1,5 @@
+# Runtime data: SQLite DB, encryption key, logs — never commit.
+n8n-data/
+
+# Sandbox secrets — also covered by the repo-wide .gitignore, kept here for clarity.
+.env
